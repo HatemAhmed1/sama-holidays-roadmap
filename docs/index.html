@@ -136,8 +136,8 @@
     <h1>Sama Holidays: build roadmap &amp; progress</h1>
     <p class="standfirst">A code-level audit of the Sama Holidays booking platform &mdash; a boutique Abu Dhabi travel agency &mdash; and a staged plan toward a modern, bilingual product that Gulf, Arabic-speaking travellers will trust. This page is regenerated as each item lands.</p>
     <div class="meta-row">
-      <span><b>Last updated</b> 8 Sep 2026</span>
-      <span><b>Current focus</b> Stage&nbsp;0 &mdash; pre-launch fixes</span>
+      <span><b>Last updated</b> 8 Sep 2026 (pm)</span>
+      <span><b>Current focus</b> Stage&nbsp;0 &mdash; 5 / 7 done</span>
       <span><b>Working branch</b> <code>feat/stage-0-launch-fixes</code></span>
       <span><b>Stack</b> Next.js&nbsp;16 &middot; Supabase &middot; Clerk &middot; Stripe &middot; RapidAPI</span>
     </div>
@@ -170,7 +170,7 @@
     <h2>Build progress</h2>
 
     <div class="progress-grid">
-      <div class="pcell"><div class="pk">STAGE 0</div><div class="pv">0 / 7</div><div class="pl">Pre-launch fixes</div></div>
+      <div class="pcell"><div class="pk">STAGE 0</div><div class="pv">5 / 7</div><div class="pl">Pre-launch fixes</div></div>
       <div class="pcell"><div class="pk">STAGE 1</div><div class="pv">0 / 7</div><div class="pl">Bilingual</div></div>
       <div class="pcell"><div class="pk">STAGE 2</div><div class="pv">0 / 15</div><div class="pl">Conversion &amp; trust</div></div>
       <div class="pcell"><div class="pk">STAGE 3</div><div class="pv">0 / 9</div><div class="pl">Marketing</div></div>
@@ -227,13 +227,13 @@
       <table>
         <thead><tr><th>Item</th><th>Why it matters</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td><b>Real Abu Dhabi contact / brand data</b> across contact page + footer</td><td>Placeholder "New York / 1-800" details destroy credibility for a local customer instantly.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
-          <tr><td><b>Fix the <code>/request-quote</code> 404</b></td><td>Home + packages CTAs link to a route that does not exist &mdash; the primary path for the highest-margin product.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
-          <tr><td><b>Rotate + scrub leaked secrets</b> in <code>CLAUDE.md</code> (RapidAPI, Clerk &amp; Stripe webhook secrets)</td><td>Live secrets are committed in plaintext; blocks making anything public and is a standing risk.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
-          <tr><td><b>Cookie-consent banner</b> gating analytics + pixels</td><td>UAE PDPL and GDPR both expect prior consent for non-essential tracking; there is none.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
-          <tr><td><b>Trust &amp; licensing footer block</b> &mdash; DCT Abu Dhabi licence no., trade licence, IATA, address</td><td>Gulf travellers check for a visible licence before paying a boutique agency online.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
-          <tr><td><b>Verify flight booking end-to-end</b> (search &rarr; price &rarr; pay &rarr; PNR &rarr; email &rarr; DB)</td><td>Flagged unverified; a broken headline funnel is worse than not offering it.</td><td class="prio p0">P0</td><td>2&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
-          <tr><td><b>Turnstile / hCaptcha</b> on contact, quote, newsletter, auth</td><td>Public email-sending server actions have no challenge in front of them.</td><td class="prio p1">P1</td><td>1</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Real Abu Dhabi contact / brand data</b> across contact page + footer</td><td>Placeholder "New York / 1-800" details destroy credibility for a local customer instantly.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip done">Done</span></td></tr>
+          <tr><td><b>Fix the <code>/request-quote</code> 404</b></td><td>Home + packages CTAs link to a route that does not exist &mdash; the primary path for the highest-margin product.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip done">Done</span></td></tr>
+          <tr><td><b>Rotate + scrub leaked secrets</b> in <code>CLAUDE.md</code> (RapidAPI, Clerk &amp; Stripe webhook secrets)</td><td>Live secrets are committed in plaintext; blocks making anything public and is a standing risk.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip wip">Scrubbed &mdash; owner must rotate</span></td></tr>
+          <tr><td><b>Cookie-consent banner</b> gating analytics + pixels</td><td>UAE PDPL and GDPR both expect prior consent for non-essential tracking; there is none.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip wip">In progress</span></td></tr>
+          <tr><td><b>Trust &amp; licensing footer block</b> &mdash; DCT Abu Dhabi licence no., trade licence, IATA, address</td><td>Gulf travellers check for a visible licence before paying a boutique agency online.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip done">Done (licence nos. pending from owner)</span></td></tr>
+          <tr><td><b>Verify flight booking end-to-end</b> (search &rarr; price &rarr; pay &rarr; PNR &rarr; email &rarr; DB)</td><td>Flagged unverified; a broken headline funnel is worse than not offering it.</td><td class="prio p0">P0</td><td>2&ndash;4</td><td><span class="chip blocked">Blocked &mdash; DB unreachable</span></td></tr>
+          <tr><td><b>Turnstile / hCaptcha</b> on contact, quote, newsletter, auth</td><td>Public email-sending server actions have no challenge in front of them.</td><td class="prio p1">P1</td><td>1</td><td><span class="chip done">Done (contact, quote, newsletter)</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -436,7 +436,13 @@
     <h2>Changelog</h2>
     <div class="changelog">
       <div class="entry">
-        <span class="date">2026-09-08</span>
+        <span class="date">2026-09-08 · pm</span>
+        <p><b>Stage 0 build, part 1.</b> Shipped on <code>feat/stage-0-launch-fixes</code> (7 commits): <code>src/config/business.ts</code> single source of truth; real Abu Dhabi address / +971 2 627 8787 / info@samaholidays.ae across footer, contact, locations, terms, privacy, sitemap (was wrong <code>samaholidays.travel</code>); footer trust strip; secrets scrubbed from <code>CLAUDE.md</code> + rotation guide; Cloudflare Turnstile on contact + newsletter (no-ops without keys); <code>quotes</code> table alignment migration; <b>new <code>/request-quote</code> 3-step wizard</b> — verified working end-to-end in the browser.</p>
+        <p><b>Blocker found:</b> the Supabase URL in <code>.env.local</code> (<code>coeqsvdzfhkgygvoscjj.supabase.co</code>) does not resolve — the entire DB layer is offline in this environment, so quote persistence, admin data and flight-booking verification can't be exercised until it's fixed.</p>
+        <p>Also added: robust <code>start-app.bat</code> dev launcher + desktop shortcut.</p>
+      </div>
+      <div class="entry">
+        <span class="date">2026-09-08 · am</span>
         <p>Audit completed against the <code>src/</code> tree. Roadmap drafted (5 stages). Git housekeeping: WIP <code>src/</code> restructure checkpointed on <code>main</code>, <code>feat/stage-0-launch-fixes</code> branched, 61 local commits pushed to <code>origin</code>. This roadmap page created and published to GitHub Pages.</p>
       </div>
     </div>

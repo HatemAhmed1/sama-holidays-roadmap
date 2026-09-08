@@ -137,8 +137,8 @@
     <p class="standfirst">A code-level audit of the Sama Holidays booking platform &mdash; a boutique Abu Dhabi travel agency &mdash; and a staged plan toward a modern, bilingual product that Gulf, Arabic-speaking travellers will trust. This page is regenerated as each item lands.</p>
     <div class="meta-row">
       <span><b>Last updated</b> 8 Sep 2026 (pm)</span>
-      <span><b>Current focus</b> Stage&nbsp;0 &mdash; 5 / 7 done</span>
-      <span><b>Working branch</b> <code>feat/stage-0-launch-fixes</code></span>
+      <span><b>Current focus</b> Stage&nbsp;0 &mdash; 6 / 7, PR open</span>
+      <span><b>Open PR</b> <a href="https://github.com/HatemAhmed1/sama-holidays/pull/14">sama-holidays#14</a></span>
       <span><b>Stack</b> Next.js&nbsp;16 &middot; Supabase &middot; Clerk &middot; Stripe &middot; RapidAPI</span>
     </div>
   </header>
@@ -170,7 +170,7 @@
     <h2>Build progress</h2>
 
     <div class="progress-grid">
-      <div class="pcell"><div class="pk">STAGE 0</div><div class="pv">5 / 7</div><div class="pl">Pre-launch fixes</div></div>
+      <div class="pcell"><div class="pk">STAGE 0</div><div class="pv">6 / 7</div><div class="pl">Pre-launch fixes</div></div>
       <div class="pcell"><div class="pk">STAGE 1</div><div class="pv">0 / 7</div><div class="pl">Bilingual</div></div>
       <div class="pcell"><div class="pk">STAGE 2</div><div class="pv">0 / 15</div><div class="pl">Conversion &amp; trust</div></div>
       <div class="pcell"><div class="pk">STAGE 3</div><div class="pv">0 / 9</div><div class="pl">Marketing</div></div>
@@ -181,8 +181,8 @@
       <table>
         <thead><tr><th>Sub-project</th><th>Status</th><th>Branch / notes</th></tr></thead>
         <tbody>
-          <tr><td><b>DevOps setup</b> &mdash; GitHub sync, this roadmap page, Vercel</td><td><span class="chip wip">In progress</span></td><td>Repo pushed; Pages live; Vercel import pending (owner)</td></tr>
-          <tr><td><b>A &mdash; Stage 0 fixes</b></td><td><span class="chip wip">In progress</span></td><td><code>feat/stage-0-launch-fixes</code> &mdash; design phase</td></tr>
+          <tr><td><b>DevOps setup</b> &mdash; GitHub sync, this roadmap page, Vercel</td><td><span class="chip wip">In progress</span></td><td>Repo pushed; Pages live; app hosting deferred by owner</td></tr>
+          <tr><td><b>A &mdash; Stage 0 fixes</b></td><td><span class="chip wip">6 / 7 &mdash; in review</span></td><td><code>feat/stage-0-launch-fixes</code>, 12 commits, prod build green. Flight verification blocked on DB.</td></tr>
           <tr><td><b>B &mdash; Bilingual foundation</b></td><td><span class="chip todo">Not started</span></td><td>Blocked on A</td></tr>
           <tr><td><b>C &mdash; Local payments</b></td><td><span class="chip todo">Not started</span></td><td>&mdash;</td></tr>
           <tr><td><b>D &mdash; Maps, filters, reviews</b></td><td><span class="chip todo">Not started</span></td><td>&mdash;</td></tr>
@@ -230,7 +230,7 @@
           <tr><td><b>Real Abu Dhabi contact / brand data</b> across contact page + footer</td><td>Placeholder "New York / 1-800" details destroy credibility for a local customer instantly.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip done">Done</span></td></tr>
           <tr><td><b>Fix the <code>/request-quote</code> 404</b></td><td>Home + packages CTAs link to a route that does not exist &mdash; the primary path for the highest-margin product.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip done">Done</span></td></tr>
           <tr><td><b>Rotate + scrub leaked secrets</b> in <code>CLAUDE.md</code> (RapidAPI, Clerk &amp; Stripe webhook secrets)</td><td>Live secrets are committed in plaintext; blocks making anything public and is a standing risk.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip wip">Scrubbed &mdash; owner must rotate</span></td></tr>
-          <tr><td><b>Cookie-consent banner</b> gating analytics + pixels</td><td>UAE PDPL and GDPR both expect prior consent for non-essential tracking; there is none.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip wip">In progress</span></td></tr>
+          <tr><td><b>Cookie-consent banner</b> gating analytics + pixels</td><td>UAE PDPL and GDPR both expect prior consent for non-essential tracking; there is none.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip done">Done</span></td></tr>
           <tr><td><b>Trust &amp; licensing footer block</b> &mdash; DCT Abu Dhabi licence no., trade licence, IATA, address</td><td>Gulf travellers check for a visible licence before paying a boutique agency online.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip done">Done (licence nos. pending from owner)</span></td></tr>
           <tr><td><b>Verify flight booking end-to-end</b> (search &rarr; price &rarr; pay &rarr; PNR &rarr; email &rarr; DB)</td><td>Flagged unverified; a broken headline funnel is worse than not offering it.</td><td class="prio p0">P0</td><td>2&ndash;4</td><td><span class="chip blocked">Blocked &mdash; DB unreachable</span></td></tr>
           <tr><td><b>Turnstile / hCaptcha</b> on contact, quote, newsletter, auth</td><td>Public email-sending server actions have no challenge in front of them.</td><td class="prio p1">P1</td><td>1</td><td><span class="chip done">Done (contact, quote, newsletter)</span></td></tr>
@@ -437,9 +437,8 @@
     <div class="changelog">
       <div class="entry">
         <span class="date">2026-09-08 · pm</span>
-        <p><b>Stage 0 build, part 1.</b> Shipped on <code>feat/stage-0-launch-fixes</code> (7 commits): <code>src/config/business.ts</code> single source of truth; real Abu Dhabi address / +971 2 627 8787 / info@samaholidays.ae across footer, contact, locations, terms, privacy, sitemap (was wrong <code>samaholidays.travel</code>); footer trust strip; secrets scrubbed from <code>CLAUDE.md</code> + rotation guide; Cloudflare Turnstile on contact + newsletter (no-ops without keys); <code>quotes</code> table alignment migration; <b>new <code>/request-quote</code> 3-step wizard</b> — verified working end-to-end in the browser.</p>
-        <p><b>Blocker found:</b> the Supabase URL in <code>.env.local</code> (<code>coeqsvdzfhkgygvoscjj.supabase.co</code>) does not resolve — the entire DB layer is offline in this environment, so quote persistence, admin data and flight-booking verification can't be exercised until it's fixed.</p>
-        <p>Also added: robust <code>start-app.bat</code> dev launcher + desktop shortcut.</p>
+        <p><b>Stage 0 build (6 / 7).</b> Branch <code>feat/stage-0-launch-fixes</code>, 12 commits, <b>production build green</b> (<code>next build</code> exit 0, 79/79 pages). Shipped: <code>src/config/business.ts</code> single source of truth; real Abu Dhabi address / +971 2 627 8787 / info@samaholidays.ae across footer, contact, locations, terms, privacy, sitemap/robots (was wrong <code>samaholidays.travel</code>) and admin/account settings; footer trust strip; secrets scrubbed from <code>CLAUDE.md</code> + rotation guide; Cloudflare Turnstile on contact + newsletter; <code>quotes</code> table alignment migration + <b><code>/request-quote</code> 3-step wizard</b> (verified end-to-end in browser) + <b><code>/admin/quotes</code></b> leads view; <b>cookie-consent</b> banner + preferences modal gating Vercel Analytics (verified: shows, persists, reopens from footer). Plus <code>start-app.bat</code> launcher + desktop shortcut.</p>
+        <p><b>Blocker:</b> the Supabase URL in <code>.env.local</code> (<code>coeqsvdzfhkgygvoscjj.supabase.co</code>) does not resolve — the DB layer is offline in this environment, so quote persistence, the admin data view and flight-booking verification can't be exercised until it's pointed at the live project.</p>
       </div>
       <div class="entry">
         <span class="date">2026-09-08 · am</span>

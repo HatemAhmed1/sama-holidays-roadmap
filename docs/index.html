@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sama Holidays Roadmap</title>
+<meta name="description" content="Living audit and staged build plan for the Sama Holidays travel platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground:#FBF7F1; --surface:#FFFFFF; --surface-2:#F4EEE4;
+    --ink:#1B2530; --ink-soft:#4B5563; --ink-faint:#7A8290;
+    --sand:#E4D9C7; --sand-soft:#EFE7D8;
+    --navy:#0A1930; --orange:#E7620E; --orange-soft:#FBEADD;
+    --teal:#0E7C7B; --teal-soft:#DBEEED;
+    --amber:#B4790B; --amber-soft:#F6E9CC;
+    --rose:#B23A48; --rose-soft:#F5DEE0;
+    --focus:#E7620E;
+    --font-display:"Fraunces","Iowan Old Style",Georgia,serif;
+    --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --measure:68ch; --wide:1180px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1017; --surface:#121A24; --surface-2:#1A2430;
+      --ink:#E8EDF3; --ink-soft:#AEB8C4; --ink-faint:#7C8794;
+      --sand:#2C3846; --sand-soft:#212C38;
+      --navy:#9DB4D6; --orange:#F5924E; --orange-soft:#38251A;
+      --teal:#5BC6C2; --teal-soft:#16302F;
+      --amber:#E0B25A; --amber-soft:#322916;
+      --rose:#E88892; --rose-soft:#341F22; --focus:#F5924E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1017; --surface:#121A24; --surface-2:#1A2430;
+    --ink:#E8EDF3; --ink-soft:#AEB8C4; --ink-faint:#7C8794;
+    --sand:#2C3846; --sand-soft:#212C38;
+    --navy:#9DB4D6; --orange:#F5924E; --orange-soft:#38251A;
+    --teal:#5BC6C2; --teal-soft:#16302F;
+    --amber:#E0B25A; --amber-soft:#322916;
+    --rose:#E88892; --rose-soft:#341F22; --focus:#F5924E;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--font-body); font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page { max-width:var(--wide); margin:0 auto; padding:0 clamp(1.1rem,4vw,3rem) 6rem; }
+  .col { max-width:var(--measure); }
+  .masthead { border-bottom:2px solid var(--ink); padding:clamp(2.5rem,7vw,4.5rem) 0 1.6rem; margin-bottom:2.5rem; }
+  .kicker { font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--orange); margin:0 0 1.1rem; }
+  h1 { font-family:var(--font-display); font-weight:500; font-size:clamp(2.3rem,6vw,3.9rem); line-height:1.04; letter-spacing:-0.015em; margin:0 0 1rem; text-wrap:balance; }
+  .standfirst { font-size:1.12rem; color:var(--ink-soft); max-width:60ch; margin:0 0 1.8rem; }
+  .meta-row { display:flex; flex-wrap:wrap; gap:0.5rem 1.6rem; font-family:var(--font-mono); font-size:0.76rem; color:var(--ink-faint); }
+  .meta-row b { color:var(--ink); font-weight:600; }
+  .meta-row a { color:var(--orange); }
+  section { margin:3.6rem 0 0; scroll-margin-top:1.5rem; }
+  .part-label { font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-faint); display:flex; align-items:center; gap:0.8rem; margin:0 0 0.7rem; }
+  .part-label::after { content:""; flex:1; height:1px; background:var(--sand); }
+  h2 { font-family:var(--font-display); font-weight:500; font-size:clamp(1.6rem,3.6vw,2.3rem); line-height:1.12; letter-spacing:-0.01em; margin:0 0 0.7rem; text-wrap:balance; }
+  h3 { font-family:var(--font-display); font-weight:600; font-size:1.28rem; margin:2.4rem 0 0.4rem; }
+  h4 { font-weight:600; font-size:0.96rem; margin:1.6rem 0 0.5rem; }
+  p { margin:0 0 1rem; }
+  a { color:var(--orange); text-underline-offset:2px; }
+  .lead { font-size:1.05rem; color:var(--ink-soft); }
+  .toc { background:var(--surface); border:1px solid var(--sand); border-radius:4px; padding:1.3rem 1.5rem; margin:2.5rem 0 0; }
+  .toc h2 { font-size:0.75rem; font-family:var(--font-mono); letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 0.8rem; }
+  .toc ol { margin:0; padding:0; list-style:none; counter-reset:toc; columns:2; column-gap:2rem; }
+  .toc li { counter-increment:toc; margin:0.35rem 0; font-size:0.9rem; break-inside:avoid; }
+  .toc li::before { content:counter(toc,decimal-leading-zero); font-family:var(--font-mono); font-size:0.72rem; color:var(--orange); margin-right:0.6rem; }
+  .toc a { color:var(--ink); text-decoration:none; }
+  .toc a:hover { color:var(--orange); }
+  .scorecard { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px; background:var(--sand); border:1px solid var(--sand); border-radius:4px; overflow:hidden; margin:1.6rem 0; }
+  .score { background:var(--surface); padding:1rem 1.1rem 1.1rem; }
+  .score .area { font-size:0.9rem; font-weight:600; margin:0 0 0.55rem; }
+  .score .bar { display:flex; gap:3px; margin:0 0 0.5rem; }
+  .score .bar i { height:6px; flex:1; border-radius:1px; background:var(--sand-soft); }
+  .score .bar i.on { background:var(--rating,var(--orange)); }
+  .score .verdict { font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-faint); }
+  .r-strong { --rating:var(--teal); } .r-ok { --rating:var(--amber); } .r-weak { --rating:var(--rose); }
+  .chip { display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--font-mono); font-size:0.66rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:0.2rem 0.5rem; border-radius:3px; white-space:nowrap; }
+  .chip::before { content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .chip.done    { background:var(--teal-soft);  color:var(--teal); }
+  .chip.wip     { background:var(--amber-soft); color:var(--amber); }
+  .chip.todo    { background:var(--sand-soft);  color:var(--ink-faint); }
+  .chip.blocked { background:var(--rose-soft);  color:var(--rose); }
+  .chip.shipped { background:var(--teal-soft);  color:var(--teal); }
+  .chip.partial { background:var(--amber-soft); color:var(--amber); }
+  .chip.stub    { background:var(--sand-soft);  color:var(--ink-faint); }
+  .chip.missing { background:var(--rose-soft);  color:var(--rose); }
+  .table-wrap { overflow-x:auto; margin:1.4rem 0 1.8rem; border:1px solid var(--sand); border-radius:4px; }
+  table { border-collapse:collapse; width:100%; min-width:640px; font-size:0.9rem; }
+  th { text-align:left; font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); padding:0.7rem 0.9rem; background:var(--surface-2); border-bottom:1px solid var(--sand); position:sticky; top:0; }
+  td { padding:0.7rem 0.9rem; border-bottom:1px solid var(--sand-soft); vertical-align:top; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:nth-child(even) td { background:color-mix(in srgb, var(--surface-2) 40%, transparent); }
+  td b { font-weight:600; }
+  .prio { font-family:var(--font-mono); font-weight:600; font-size:0.8rem; }
+  .p0 { color:var(--rose); } .p1 { color:var(--orange); } .p2 { color:var(--amber); } .p3 { color:var(--ink-faint); }
+  .stage { border-left:3px solid var(--orange); padding:0.2rem 0 0.2rem 1.4rem; margin:2.4rem 0; }
+  .stage-head { display:flex; align-items:baseline; gap:0.9rem; flex-wrap:wrap; margin:0 0 0.3rem; }
+  .stage-num { font-family:var(--font-mono); font-size:0.78rem; font-weight:600; color:var(--orange); letter-spacing:0.05em; }
+  .stage h3 { margin:0; font-size:1.3rem; }
+  .stage .goal { color:var(--ink-soft); font-size:0.95rem; margin:0.3rem 0 0; }
+  .callout { background:var(--surface); border:1px solid var(--sand); border-left:3px solid var(--navy); border-radius:4px; padding:1.1rem 1.3rem; margin:1.6rem 0; font-size:0.94rem; }
+  .callout.warn { border-left-color:var(--rose); }
+  .callout p:last-child { margin-bottom:0; }
+  .callout .tag { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); display:block; margin-bottom:0.4rem; }
+  ul.tight, ol.tight { margin:0.4rem 0 1.2rem; padding-left:1.3rem; }
+  ul.tight li, ol.tight li { margin:0.35rem 0; }
+  code { font-family:var(--font-mono); font-size:0.82em; background:var(--surface-2); padding:0.1rem 0.35rem; border-radius:3px; }
+  .progress-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--sand); border:1px solid var(--sand); border-radius:4px; overflow:hidden; margin:1.6rem 0; }
+  .pcell { background:var(--surface); padding:0.9rem 1rem 1rem; }
+  .pcell .pk { font-family:var(--font-mono); font-size:0.7rem; color:var(--ink-faint); letter-spacing:0.08em; }
+  .pcell .pv { font-family:var(--font-display); font-size:1.7rem; font-weight:600; margin:0.15rem 0; }
+  .pcell .pl { font-size:0.8rem; color:var(--ink-soft); }
+  .changelog { border-left:3px solid var(--sand); padding-left:1.4rem; }
+  .changelog .entry { margin:0 0 1.4rem; }
+  .changelog .date { font-family:var(--font-mono); font-size:0.74rem; color:var(--orange); letter-spacing:0.06em; }
+  .changelog .entry p { margin:0.25rem 0 0; font-size:0.94rem; }
+  .footer-note { margin-top:4rem; padding-top:1.4rem; border-top:1px solid var(--sand); font-size:0.82rem; color:var(--ink-faint); font-family:var(--font-mono); }
+  :focus-visible { outline:2px solid var(--focus); outline-offset:2px; border-radius:2px; }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+  @media (max-width:640px) { body { font-size:16px; } .toc ol { columns:1; } h3 { font-size:1.15rem; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="kicker">Living Audit &amp; Build Roadmap</p>
+    <h1>Sama Holidays: build roadmap &amp; progress</h1>
+    <p class="standfirst">A code-level audit of the Sama Holidays booking platform &mdash; a boutique Abu Dhabi travel agency &mdash; and a staged plan toward a modern, bilingual product that Gulf, Arabic-speaking travellers will trust. This page is regenerated as each item lands.</p>
+    <div class="meta-row">
+      <span><b>Last updated</b> 8 Sep 2026</span>
+      <span><b>Current focus</b> Stage&nbsp;0 &mdash; pre-launch fixes</span>
+      <span><b>Working branch</b> <code>feat/stage-0-launch-fixes</code></span>
+      <span><b>Stack</b> Next.js&nbsp;16 &middot; Supabase &middot; Clerk &middot; Stripe &middot; RapidAPI</span>
+    </div>
+  </header>
+
+  <div class="col">
+    <p class="lead">The platform is architecturally mature: auth, payments, a real supplier integration, an admin CMS, transactional email, rate-limiting and error monitoring are in place and largely working. The gaps are in the things that make this a <em>regional</em> product: genuine Arabic support, local payment methods, conversational help, maps, and the trust signals a UAE agency is expected to show.</p>
+  </div>
+
+  <div class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#progress">Build progress</a></li>
+      <li><a href="#scorecard">Readiness scorecard</a></li>
+      <li><a href="#stage0">Stage 0 &mdash; pre-launch blockers</a></li>
+      <li><a href="#stage1">Stage 1 &mdash; real bilingual product</a></li>
+      <li><a href="#stage2">Stage 2 &mdash; conversion &amp; trust</a></li>
+      <li><a href="#stage3">Stage 3 &mdash; marketing &amp; growth</a></li>
+      <li><a href="#stage4">Stage 4 &mdash; AI, personalisation, scale</a></li>
+      <li><a href="#built">What's already built</a></li>
+      <li><a href="#apis">Free &amp; open APIs to adopt</a></li>
+      <li><a href="#bugs">Defects found</a></li>
+      <li><a href="#changelog">Changelog</a></li>
+    </ol>
+  </div>
+
+  <!-- ============ PROGRESS ============ -->
+  <section id="progress">
+    <p class="part-label">Status</p>
+    <h2>Build progress</h2>
+
+    <div class="progress-grid">
+      <div class="pcell"><div class="pk">STAGE 0</div><div class="pv">0 / 7</div><div class="pl">Pre-launch fixes</div></div>
+      <div class="pcell"><div class="pk">STAGE 1</div><div class="pv">0 / 7</div><div class="pl">Bilingual</div></div>
+      <div class="pcell"><div class="pk">STAGE 2</div><div class="pv">0 / 15</div><div class="pl">Conversion &amp; trust</div></div>
+      <div class="pcell"><div class="pk">STAGE 3</div><div class="pv">0 / 9</div><div class="pl">Marketing</div></div>
+      <div class="pcell"><div class="pk">STAGE 4</div><div class="pv">0 / 7</div><div class="pl">AI &amp; scale</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Sub-project</th><th>Status</th><th>Branch / notes</th></tr></thead>
+        <tbody>
+          <tr><td><b>DevOps setup</b> &mdash; GitHub sync, this roadmap page, Vercel</td><td><span class="chip wip">In progress</span></td><td>Repo pushed; Pages live; Vercel import pending (owner)</td></tr>
+          <tr><td><b>A &mdash; Stage 0 fixes</b></td><td><span class="chip wip">In progress</span></td><td><code>feat/stage-0-launch-fixes</code> &mdash; design phase</td></tr>
+          <tr><td><b>B &mdash; Bilingual foundation</b></td><td><span class="chip todo">Not started</span></td><td>Blocked on A</td></tr>
+          <tr><td><b>C &mdash; Local payments</b></td><td><span class="chip todo">Not started</span></td><td>&mdash;</td></tr>
+          <tr><td><b>D &mdash; Maps, filters, reviews</b></td><td><span class="chip todo">Not started</span></td><td>&mdash;</td></tr>
+          <tr><td><b>E &mdash; SEO, analytics, messaging</b></td><td><span class="chip todo">Not started</span></td><td>&mdash;</td></tr>
+          <tr><td><b>F &mdash; AI assistant + B2B portal</b></td><td><span class="chip todo">Not started</span></td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ SCORECARD ============ -->
+  <section id="scorecard">
+    <p class="part-label">Summary</p>
+    <h2>Readiness scorecard</h2>
+    <div class="col"><p>How close each area is to production-ready for the target market, at the start of the engagement.</p></div>
+    <div class="scorecard">
+      <div class="score r-strong"><p class="area">Architecture &amp; foundation</p><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="verdict">Strong</span></div>
+      <div class="score r-strong"><p class="area">Card booking &amp; checkout</p><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="verdict">Working</span></div>
+      <div class="score r-ok"><p class="area">Admin / catalogue CMS</p><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="verdict">Functional</span></div>
+      <div class="score r-weak"><p class="area">Bilingual / Arabic UX</p><div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="verdict">Critical gap</span></div>
+      <div class="score r-weak"><p class="area">Local payments (Gulf)</p><div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="verdict">Card only</span></div>
+      <div class="score r-ok"><p class="area">Mobile &amp; performance</p><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="verdict">Needs work</span></div>
+      <div class="score r-ok"><p class="area">SEO &amp; discoverability</p><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="verdict">Basic</span></div>
+      <div class="score r-ok"><p class="area">Marketing &amp; analytics</p><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="verdict">Partial</span></div>
+      <div class="score r-weak"><p class="area">AI / conversational help</p><div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="verdict">Absent</span></div>
+      <div class="score r-weak"><p class="area">UAE trust &amp; compliance</p><div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="verdict">Weak</span></div>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 0 ============ -->
+  <section id="stage0">
+    <p class="part-label">Roadmap</p>
+    <h2>Gaps &amp; recommendations, by stage</h2>
+    <div class="col"><p>Five stages, ordered so each unblocks the next. Priority: <span class="prio p0">P0</span> blocker &rarr; <span class="prio p1">P1</span> high &rarr; <span class="prio p2">P2</span> medium &rarr; <span class="prio p3">P3</span> later. Effort is rough dev-days for one experienced full-stack developer.</p></div>
+
+    <div class="stage">
+      <div class="stage-head"><span class="stage-num">Stage 0</span><h3>Pre-launch blockers</h3><span class="chip wip">In progress</span></div>
+      <p class="goal">Not features &mdash; each is something currently broken, misleading, or legally required before the site can go live for a real Abu Dhabi agency.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Why it matters</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Real Abu Dhabi contact / brand data</b> across contact page + footer</td><td>Placeholder "New York / 1-800" details destroy credibility for a local customer instantly.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Fix the <code>/request-quote</code> 404</b></td><td>Home + packages CTAs link to a route that does not exist &mdash; the primary path for the highest-margin product.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Rotate + scrub leaked secrets</b> in <code>CLAUDE.md</code> (RapidAPI, Clerk &amp; Stripe webhook secrets)</td><td>Live secrets are committed in plaintext; blocks making anything public and is a standing risk.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Cookie-consent banner</b> gating analytics + pixels</td><td>UAE PDPL and GDPR both expect prior consent for non-essential tracking; there is none.</td><td class="prio p0">P0</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Trust &amp; licensing footer block</b> &mdash; DCT Abu Dhabi licence no., trade licence, IATA, address</td><td>Gulf travellers check for a visible licence before paying a boutique agency online.</td><td class="prio p0">P0</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Verify flight booking end-to-end</b> (search &rarr; price &rarr; pay &rarr; PNR &rarr; email &rarr; DB)</td><td>Flagged unverified; a broken headline funnel is worse than not offering it.</td><td class="prio p0">P0</td><td>2&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Turnstile / hCaptcha</b> on contact, quote, newsletter, auth</td><td>Public email-sending server actions have no challenge in front of them.</td><td class="prio p1">P1</td><td>1</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="col" style="font-size:0.9rem;color:var(--ink-soft)">Also on the pre-launch list: run Supabase migrations against production and seed the catalogue so home grids stop showing fictional fallback inventory; reconcile <code>CLAUDE.md</code> with the actual (flat, non-<code>[locale]</code>) routing.</p>
+  </section>
+
+  <!-- ============ STAGE 1 ============ -->
+  <section id="stage1">
+    <div class="stage">
+      <div class="stage-head"><span class="stage-num">Stage 1</span><h3>A real bilingual product</h3><span class="chip todo">Not started</span></div>
+      <p class="goal">Turn "there is a language toggle" into "an Arabic speaker can complete a booking entirely in Arabic, in a correctly mirrored layout, indexed by Google in Arabic." Highest-leverage investment for the target market.</p>
+    </div>
+    <div class="callout warn">
+      <span class="tag">Why this is the priority</span>
+      <p>The target customer is an Arabic-speaking Gulf traveller. Today the Arabic "translation" covers roughly the home page only; About, Contact, the booking funnel, the account area and all system messages render in English. <code>dir="rtl"</code> is applied by JavaScript after hydration, so first paint is left-to-right and crawlers see an English-only <code>lang="en"</code> page. A half-Arabic checkout signals the agency doesn't really serve that customer.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Recommendation &amp; justification</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Server-rendered i18n with locale routing</b></td><td>Actually use the installed <code>next-intl</code>: <code>/[locale]/&hellip;</code> segments, <code>&lt;html lang&gt;</code>/<code>dir</code> set on the server, per-namespace catalogues, <code>hreflang</code> alternates.</td><td class="prio p1">P1</td><td>4&ndash;6</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Translate the whole surface</b></td><td>Every string in booking, account, customer emails, errors, validation. Professional Gulf-Arabic copy for anything transactional or legal.</td><td class="prio p1">P1</td><td>5&ndash;8</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Drop the client-side MyMemory call</b></td><td>Translating arbitrary DOM text at runtime via a free public endpoint is unreliable and leaks content to a third party.</td><td class="prio p1">P1</td><td>1</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>RTL layout audit</b></td><td>Logical properties instead of <code>ml-/pl-/left-</code>; mirror carousels, icons, steppers, nav. Test the search widget and checkout stepper.</td><td class="prio p1">P1</td><td>3&ndash;5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Arabic-aware formatting</b></td><td>Locale numerals, currency, dates; a <b>Hijri calendar</b> option in date pickers.</td><td class="prio p2">P2</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Arabic typography</b></td><td>Ship IBM Plex Sans Arabic / Noto Kufi / Cairo with tuned line-height; Latin-only Plus Jakarta Sans renders Arabic in an ugly fallback.</td><td class="prio p2">P2</td><td>1</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Localized CMS content</b></td><td>Arabic bodies for destinations, packages, blog &mdash; add a locale column / translation table to <code>admin_*</code>.</td><td class="prio p2">P2</td><td>3&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 2 ============ -->
+  <section id="stage2">
+    <div class="stage">
+      <div class="stage-head"><span class="stage-num">Stage 2</span><h3>Conversion &amp; trust</h3><span class="chip todo">Not started</span></div>
+      <p class="goal">Make it easy and safe to pay the way Gulf customers pay, help them decide with maps and filters, and give them a reason to believe the booking is real.</p>
+    </div>
+    <h4>Payments &mdash; biggest revenue gap after language</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Why it's needed here</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Apple Pay &amp; Google Pay</b></td><td>Very high wallet adoption in the UAE; one-tap lifts mobile conversion. Stripe already supports both &mdash; domain verification + Payment Request button.</td><td class="prio p1">P1</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Tabby &amp; Tamara (BNPL)</b></td><td>Dominant instalment products in UAE/KSA; travel is their top category. Absence pushes package customers to competitors.</td><td class="prio p1">P1</td><td>3&ndash;5 ea</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Regional acquirer</b> (Tap / PayTabs / Telr / Network Intl)</td><td>Enables <b>mada</b>, <b>KNET</b>, <b>Benefit</b> and local card processing with AED settlement.</td><td class="prio p1">P1</td><td>4&ndash;7</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Bank transfer / hold-my-booking</b> for high-value packages</td><td>Cultural preference for confirming large spend by transfer or with an agent.</td><td class="prio p2">P2</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Refund flow</b> in admin + account</td><td>Cancellation exists but there is no refund execution or visibility; required operationally and for compliance.</td><td class="prio p1">P1</td><td>3&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Discovery &amp; decision support</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Recommendation</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Maps everywhere</b> (hotel detail, destinations, locations)</td><td>Location is a primary hotel-choice factor and there is no map at all. <b>MapLibre GL + free OSM tiles</b> &mdash; no key, no per-view cost.</td><td class="prio p1">P1</td><td>3&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Richer filters</b> + Gulf facets</td><td>Price slider, stars, board, guest score, amenities; flight stops/airline/time/duration. Plus <b>family/connecting rooms, halal, mosque proximity, airport shuttle</b>.</td><td class="prio p1">P1</td><td>4&ndash;6</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Prayer times + weather</b> on destination pages</td><td>Aladhan API (free) for prayer times / Qibla; Open-Meteo (free) for forecast.</td><td class="prio p2">P2</td><td>2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Verified-purchase reviews</b></td><td>Review page exists but no loop from completed bookings into testimonials and hotel/package pages.</td><td class="prio p2">P2</td><td>3&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Honest price transparency</b></td><td>Show full AED price incl. VAT/fees from first results view; drop fake urgency styling unless real.</td><td class="prio p2">P2</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Wishlist &rarr; price-drop email</b></td><td>Wishlist storage exists; add a watcher. Cheap retention mechanic.</td><td class="prio p3">P3</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Performance &amp; mobile</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Why</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>De-client-ify top-level pages</b></td><td>About, Contact, Packages, Hotel detail are wholesale <code>"use client"</code> &mdash; big bundles, weak LCP on mid-range Android.</td><td class="prio p1">P1</td><td>3&ndash;5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Image discipline</b></td><td>Enforce <code>next/image</code> sizing, AVIF/WebP, blur; serve destination imagery from Storage/CDN, not Unsplash hotlinks.</td><td class="prio p2">P2</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Core Web Vitals budget + Lighthouse CI</b></td><td>Measurable gate so performance doesn't regress silently.</td><td class="prio p2">P2</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>PWA basics</b></td><td>Manifest, offline shell, add-to-home-screen for high mobile-first usage.</td><td class="prio p3">P3</td><td>2</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 3 ============ -->
+  <section id="stage3">
+    <div class="stage">
+      <div class="stage-head"><span class="stage-num">Stage 3</span><h3>Marketing &amp; growth</h3><span class="chip todo">Not started</span></div>
+      <p class="goal">Get found, measure what happens, bring people back. Plumbing (PostHog, Vercel Analytics, sitemap) is in; the growth layer on top is thin.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Recommendation &amp; justification</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Per-page SEO + JSON-LD</b></td><td><code>generateMetadata</code> per route; <code>Hotel</code>, <code>TouristTrip</code>, <code>Offer</code>, <code>FAQPage</code>, <code>TravelAgency</code> schema. Drives rich results in Google &mdash; dominant discovery channel in the Gulf.</td><td class="prio p1">P1</td><td>3&ndash;5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Bilingual SEO</b></td><td>Arabic slugs, <code>hreflang</code>, Arabic meta + sitemap. Ranking for Arabic queries is a largely uncontested channel vs the OTAs.</td><td class="prio p1">P1</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Analytics event taxonomy</b></td><td>search / view_item / add_to_wishlist / begin_checkout / purchase / drop-off, fed to GA4 and ad platforms.</td><td class="prio p1">P1</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>GA4 + Google Tag Manager</b></td><td>Free; the baseline every UAE marketing agency expects. Manage pixels via GTM so marketing isn't blocked on dev time.</td><td class="prio p2">P2</td><td>1&ndash;2</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Ad-platform pixels</b> (Meta, TikTok, Snapchat, Google Ads)</td><td>Primary paid channels for Gulf travel. Server-side where possible. All free to install.</td><td class="prio p2">P2</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Real newsletter delivery</b> (Brevo / MailerLite / Resend free tier)</td><td>Subscriptions are captured but never sent anything. Double opt-in + Arabic template + deal digests.</td><td class="prio p2">P2</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Referral &amp; loyalty</b></td><td>Share code, credit on completed trip. Word-of-mouth is strong in Gulf social circles.</td><td class="prio p3">P3</td><td>3&ndash;5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Abandoned-checkout &amp; post-trip emails</b></td><td>You have the events and an email transport &mdash; "you left something", "trip in 3 days", "leave a review".</td><td class="prio p2">P2</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>WhatsApp click-to-chat</b> (free <code>wa.me</code>, floating button)</td><td>WhatsApp is <em>the</em> customer-service channel in the region. Captures leads the contact form loses.</td><td class="prio p1">P1</td><td>0.5</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 4 ============ -->
+  <section id="stage4">
+    <div class="stage">
+      <div class="stage-head"><span class="stage-num">Stage 4</span><h3>AI, personalisation &amp; scale</h3><span class="chip todo">Not started</span></div>
+      <p class="goal">Once fundamentals are solid, differentiate with an Arabic-first assistant and open the B2B channel.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Recommendation &amp; justification</th><th>Priority</th><th>Effort</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Arabic-language virtual assistant</b> (RTL chat widget)</td><td>Fluent Gulf-Arabic answers that return real packages is a genuine differentiator vs OTAs. Build on the existing OpenAI key + embeddings pipeline (<code>services/ai/embeddings.ts</code>, <code>match_hotels</code>) with RAG over your own catalogue, FAQ and policies.</td><td class="prio p1">P1</td><td>6&ndash;10</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Assistant &rarr; booking hand-off</b></td><td>Deep-link into a pre-filled search / quote; escalate to a human on WhatsApp with context.</td><td class="prio p2">P2</td><td>3&ndash;5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Guardrails &amp; logging</b></td><td>Price/availability from live tools only; log every conversation; rate-limit; PII care. Non-negotiable before customer contact.</td><td class="prio p1">P1</td><td>2&ndash;3</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Personalised home &amp; email</b></td><td>Use booking + wishlist + search history to reorder destinations and tailor emails. Rules-based first.</td><td class="prio p3">P3</td><td>3&ndash;5</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>B2B / sub-agent portal</b></td><td>Data model + server actions exist. A portal for partner agencies booking at negotiated markups with a credit line &mdash; a distinct revenue stream, mostly a UI build.</td><td class="prio p2">P2</td><td>8&ndash;12</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Live admin analytics</b></td><td>Replace hardcoded revenue chart / top-destinations with live Supabase aggregates; add funnel, margin, refund reporting.</td><td class="prio p2">P2</td><td>3&ndash;4</td><td><span class="chip todo">Todo</span></td></tr>
+          <tr><td><b>Test coverage + CI</b></td><td>Playwright is installed but unused. Cover booking funnel, payment webhooks, i18n routing, RLS; run in CI.</td><td class="prio p2">P2</td><td>5&ndash;8</td><td><span class="chip todo">Todo</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ BUILT ============ -->
+  <section id="built">
+    <p class="part-label">Inventory</p>
+    <h2>What's already built</h2>
+    <div class="col"><p>The foundation is real. Summary of what exists today &mdash; full detail was in the original audit.</p></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>State</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><b>Public pages</b></td><td><span class="chip partial">Partial</span></td><td>Home (hero + 4-tab search, destinations, packages, hotels, testimonials), About, Contact (form + FAQ), Destinations + <code>[slug]</code>, Offers, Blog + <code>[id]</code>, Careers, Locations, Support, Terms/Privacy, 404. Mostly hardcoded English; placeholder contact data.</td></tr>
+          <tr><td><b>Booking funnel</b></td><td><span class="chip shipped">Shipped</span></td><td>Flight / hotel / package / taxi search via RapidAPI (Booking.com); server-rendered results; hotel booking most complete (guest details &rarr; Stripe Payment Element &rarr; VAT &rarr; confirmation &rarr; PDF invoice &rarr; SMTP email); signed price-tamper token; live FX + currency switch; semantic hotel search via OpenAI embeddings.</td></tr>
+          <tr><td><b>Account portal</b></td><td><span class="chip shipped">Shipped</span></td><td>Clerk auth (Google/Apple SSO), dashboard, bookings + detail, payments, notifications, wishlist, reviews, settings, security.</td></tr>
+          <tr><td><b>Admin CMS</b></td><td><span class="chip partial">Partial</span></td><td>Role-gated. CRUD for packages/flights/hotels/taxis/deals/blog/testimonials; pricing-margin engine; live KPIs. Dashboard charts are hardcoded sample data.</td></tr>
+          <tr><td><b>Infra</b></td><td><span class="chip shipped">Shipped</span></td><td>Supabase + RLS, Stripe webhooks, Sentry v10, PostHog + Vercel Analytics, Upstash rate-limiting, per-request CSP, Gmail SMTP email.</td></tr>
+          <tr><td><b>Bilingual</b></td><td><span class="chip missing">Not real</span></td><td>Client-only context, ~80-key homepage dictionary. <code>next-intl</code> installed but unused. No locale routing, <code>lang="en"</code> hardcoded, <code>dir</code> flipped post-hydration.</td></tr>
+          <tr><td><b>Maps / chat / tests</b></td><td><span class="chip missing">Missing</span></td><td>No map library anywhere; no chatbot / WhatsApp; Playwright installed with no test suite.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ APIS ============ -->
+  <section id="apis">
+    <p class="part-label">Reference</p>
+    <h2>Free &amp; open APIs to adopt</h2>
+    <div class="col"><p>All have a genuine free tier or are fully open &mdash; covering the gaps above without licensing cost while the product finds its footing.</p></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Need</th><th>API / source</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Maps &amp; tiles</td><td><b>MapLibre GL JS</b> + OpenStreetMap / Protomaps tiles</td><td>No key, no per-view billing.</td></tr>
+          <tr><td>Geocoding / autocomplete</td><td><b>Nominatim</b>, <b>Photon</b> (OSM)</td><td>Free; respect usage policy or self-host.</td></tr>
+          <tr><td>Flights / hotels / POI</td><td><b>Amadeus Self-Service</b> free tier</td><td>Supplement or fallback to RapidAPI; flight-delay prediction, cheapest-date.</td></tr>
+          <tr><td>Live flight status</td><td><b>OpenSky Network</b> (open), <b>AviationStack</b> free tier</td><td>"Track your flight" on confirmation.</td></tr>
+          <tr><td>FX rates</td><td><b>Frankfurter</b>, <b>open.er-api.com</b>, <b>exchangerate.host</b></td><td>Key-less options behind the existing <code>/api/rates</code>.</td></tr>
+          <tr><td>Prayer times &amp; Qibla</td><td><b>Aladhan API</b></td><td>Free and open.</td></tr>
+          <tr><td>Weather</td><td><b>Open-Meteo</b></td><td>Fully free, no key.</td></tr>
+          <tr><td>Destination content</td><td><b>Wikivoyage / Wikipedia REST</b>, <b>REST Countries</b></td><td>Seeds guides + assistant RAG.</td></tr>
+          <tr><td>Public holidays</td><td><b>Nager.Date</b>, <b>Calendarific</b> free tier</td><td>"Best time to travel", long-weekend targeting.</td></tr>
+          <tr><td>Bot protection</td><td><b>Cloudflare Turnstile</b>, <b>hCaptcha</b></td><td>Free, drop-in.</td></tr>
+          <tr><td>Email delivery</td><td><b>Brevo</b>, <b>MailerLite</b>, <b>Resend</b> free tiers</td><td>Newsletter + lifecycle; keep SMTP for transactional.</td></tr>
+          <tr><td>Analytics &amp; tags</td><td><b>GA4 + GTM</b>, PostHog free tier</td><td>Meta / TikTok / Snap pixels free to install.</td></tr>
+          <tr><td>Payments</td><td><b>Stripe</b> wallets, <b>Tabby</b>, <b>Tamara</b>, <b>Tap Payments</b></td><td>No integration fee; per-transaction only. Tap covers mada / KNET / Benefit / Apple Pay.</td></tr>
+          <tr><td>Assistant model</td><td><b>OpenAI</b> (key present) or <b>Claude</b>; <b>Groq</b> for low-cost inference</td><td>RAG over your catalogue keeps prompts small.</td></tr>
+          <tr><td>Customer messaging</td><td><b>WhatsApp</b> <code>wa.me</code> link (free); WhatsApp Business Platform free tier</td><td>Start with the link, graduate to the API.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ BUGS ============ -->
+  <section id="bugs">
+    <p class="part-label">Appendix</p>
+    <h2>Defects found</h2>
+    <p class="col">Concrete issues in the code, separate from missing features. Struck through once fixed.</p>
+    <ul class="tight">
+      <li><b><code>/request-quote</code> route does not exist</b> but is linked from <code>features/home/PackagesGrid.tsx</code> and <code>app/packages/packages-client.tsx</code>.</li>
+      <li><b>Placeholder contact data</b> on <code>contact/page.tsx</code> and <code>components/layout/footer.tsx</code> ("123 Travel Street, New York", 1-800 numbers, <code>.travel</code> email); contact-page social links are <code>#</code>.</li>
+      <li><b>Live secrets in <code>CLAUDE.md</code></b> &mdash; RapidAPI key, Clerk &amp; Stripe webhook secrets committed in plaintext.</li>
+      <li><b>Documentation drift</b> &mdash; <code>CLAUDE.md</code> describes a <code>src/app/[locale]/</code> tree and named <code>export const proxy</code>; the app is flat-routed and <code>src/proxy.ts</code> uses <code>export default clerkMiddleware(&hellip;)</code>. Also still references old <code>src/lib/</code> paths (now <code>src/services|utils|context</code>).</li>
+      <li><b><code>next-intl</code> installed but unused</b>; i18n is a bespoke client context with a partial dictionary.</li>
+      <li><b><code>&lt;html lang="en"&gt;</code> hardcoded</b>; <code>lang</code>/<code>dir</code> corrected only client-side &mdash; RTL flash + wrong language for crawlers.</li>
+      <li><b>Runtime translation via free public API</b> &mdash; <code>translateText()</code> hits <code>api.mymemory.translated.net</code> from the browser.</li>
+      <li><b>Admin dashboard</b> revenue chart and "Top Destinations" are hardcoded arrays.</li>
+      <li><b>Home grids</b> ship fictional fallback inventory when Supabase returns nothing.</li>
+      <li><b>No cookie-consent</b> despite analytics loading and a privacy policy implying choice.</li>
+      <li><b>Wholesale <code>"use client"</code></b> on <code>about</code>, <code>contact</code>, <code>packages-client</code>, <code>hotel-detail-client</code> and others.</li>
+      <li><b>Playwright</b> dependency with no tests and no CI wiring.</li>
+    </ul>
+  </section>
+
+  <!-- ============ CHANGELOG ============ -->
+  <section id="changelog">
+    <p class="part-label">History</p>
+    <h2>Changelog</h2>
+    <div class="changelog">
+      <div class="entry">
+        <span class="date">2026-09-08</span>
+        <p>Audit completed against the <code>src/</code> tree. Roadmap drafted (5 stages). Git housekeeping: WIP <code>src/</code> restructure checkpointed on <code>main</code>, <code>feat/stage-0-launch-fixes</code> branched, 61 local commits pushed to <code>origin</code>. This roadmap page created and published to GitHub Pages.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer-note">Maintained alongside the Sama Holidays build &middot; regenerated as items are completed &middot; source: <a href="https://github.com/HatemAhmed1/sama-holidays-roadmap">github.com/HatemAhmed1/sama-holidays-roadmap</a></p>
+
+</div>
+</body>
+</html>
